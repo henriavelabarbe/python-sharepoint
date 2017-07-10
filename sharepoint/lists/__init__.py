@@ -145,7 +145,8 @@ class SharePointList(object):
             self._moderation = moderation.Moderation(self)
         return self._moderation
 
-    def get_rows(self, folder=''):
+    #def get_rows(self, folder=''):
+    def get_rows(self, folder='', view=''):
         rows = []
         attribs = collections.defaultdict(dict)
         field_groups, lookup_count = [[]], 0
@@ -162,6 +163,7 @@ class SharePointList(object):
             #query_options = E.QueryOptions(E.ViewAttributes(Scope="Recursive"))
             query_options = E.QueryOptions(E.Folder(folder))
             xml = SP.GetListItems(SP.listName(self.id),
+                                  SP.viewName(view),
                                   SP.rowLimit("100000"),
                                   SP.viewFields(view_fields),
                                   SP.queryOptions(query_options))
@@ -441,4 +443,4 @@ class SharePointListRow(object):
     def attachments(self):
         if not hasattr(self, '_attachments'):
             self._attachments = SharePointAttachments(self.opener, self.list.id, self.id)
-        return self._attachments
+        return self._attachments 
