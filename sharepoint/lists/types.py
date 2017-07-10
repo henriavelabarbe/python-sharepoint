@@ -419,7 +419,7 @@ class CalculatedField(Field):
     group_multi = 2
     immutable = True
     
-    types = {'float': float}
+    types = {'float': float, 'string': str}
     type_names = {float: 'float',
                   str: 'text',
                   int: 'int'}
@@ -465,4 +465,4 @@ type_mapping = {'Text': TextField,
                 'Integer': IntegerField,
                 'Boolean': BooleanField,
                 'ModStat': ModerationStatusField}
-default_type = UnknownField
+default_type = UnknownField 
